@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimpleMetronome.Views"
         mc:Ignorable="d"
-        Title="Simple Metronome" Height="500" Width="400"
+        Title="Simple Metronome (1.0.0)" Height="500" Width="400"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
