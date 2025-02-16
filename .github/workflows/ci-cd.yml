@@ -1,0 +1,43 @@
+name: Build Metronome App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest 
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0'  
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Build Solution in Release Mode
+        run: dotnet build --configuration Release
+
+      - name: Publish Executable
+        run: |
+          dotnet publish -c Release -o publish
+
+      - name: Create ZIP Package
+        run: |
+          Compress-Archive -Path publish/* -DestinationPath SimpleMetronome-${{ github.run_number }}.zip
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: SimpleMetronome
+          path: SimpleMetronome-${{ github.run_number }}.zip
