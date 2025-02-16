@@ -38,4 +38,19 @@
     </Page>
   </ItemGroup>
 
+	<ItemGroup>
+		<Content Include="bin\Release\net9.0-windows\NAudio*.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+			<Link>libs\%(Filename)%(Extension)</Link>
+		</Content>
+	</ItemGroup>
+
+	<Target Name="MoveDLLsToLibs" AfterTargets="Build">
+		<ItemGroup>
+			<DLLFiles Include="$(OutputPath)NAudio*.dll" />
+		</ItemGroup>
+		<Move SourceFiles="@(DLLFiles)" DestinationFolder="$(OutputPath)libs\" />
+	</Target>
+
 </Project>
