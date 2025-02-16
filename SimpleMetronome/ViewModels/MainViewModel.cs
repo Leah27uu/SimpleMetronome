@@ -10,6 +10,7 @@ using System.Windows.Input;
 using SimpleMetronome.Helpers; // Imports RelayCommand
 using SimpleMetronome.Services; // Imports RelayCommand
 using System.Timers;
+using System.Reflection;
 
 namespace SimpleMetronome.ViewModels
 {
@@ -19,9 +20,12 @@ namespace SimpleMetronome.ViewModels
         private bool _isRunning;
         private string _startStopText = "Start";
         private string _selectedTimeSignature = "4/4";
-        private string _selectedSound = "Click";
+        private string _selectedSound = "Click"; // Default selected sound 
         private int _beatsPerMeasure = 4;
         private bool _accentFirstBeat = false; // Default: No accent
+        private double _volume = 1.0; // Default volume at 100%
+        private string _version;
+        
 
         private readonly AudioService _audioService;
         private readonly TimerService _timerService;
@@ -41,6 +45,27 @@ namespace SimpleMetronome.ViewModels
                 _bpm = value;
                 OnPropertyChanged();
                 if (_isRunning) _timerService.Restart(BPM, _beatsPerMeasure, AccentFirstBeat); // Update timer
+            }
+        }
+
+        private string GetVersion()
+        {
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            return version?.ToString() ?? "1.0.0";
+        }
+
+        public string Version { get; set; }
+        
+        
+
+        public double Volume
+        {
+            get => _volume;
+            set
+            {
+                _volume = Math.Clamp(value, 0.0, 1.0); 
+                OnPropertyChanged();
+                _audioService.SetVolume(_volume);
             }
         }
 
@@ -89,6 +114,7 @@ namespace SimpleMetronome.ViewModels
 
         public MainViewModel()
         {
+            Version = GetVersion();
             _timerService = new TimerService();
             _audioService = new AudioService();
             _timerService.Tick += (isAccent) => _audioService.PlayTick(isAccent); // Play correct sound
