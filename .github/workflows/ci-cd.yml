@@ -15,10 +15,10 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0'  
 
@@ -37,7 +37,7 @@ jobs:
           Compress-Archive -Path publish/* -DestinationPath SimpleMetronome-${{ github.run_number }}.zip
 
       - name: Upload Build Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: SimpleMetronome
           path: SimpleMetronome-${{ github.run_number }}.zip
