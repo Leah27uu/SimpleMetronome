@@ -19,6 +19,7 @@ namespace SimpleMetronome.ViewModels
         private bool _isRunning;
         private string _startStopText = "Start";
         private string _selectedTimeSignature = "4/4";
+        private string _selectedSound = "Click";
         private int _beatsPerMeasure = 4;
         private bool _accentFirstBeat = false; // Default: No accent
 
@@ -69,6 +70,16 @@ namespace SimpleMetronome.ViewModels
                 _beatsPerMeasure = int.Parse(value.Split('/')[0]); // Extract beats from "4/4"
                 OnPropertyChanged();
                 if (_isRunning) _timerService.Restart(BPM, _beatsPerMeasure, AccentFirstBeat);
+            }
+        }
+
+        public string SelectedSound
+        {
+            get => _selectedSound;
+            set
+            {
+                _selectedSound = value;
+                OnPropertyChanged();
             }
         }
 

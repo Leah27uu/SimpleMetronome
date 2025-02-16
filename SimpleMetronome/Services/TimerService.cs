@@ -60,6 +60,6 @@ namespace SimpleMetronome.Services
             }
         }
 
-        public bool IsRunning => _isRunning;
+        public bool IsRunning => _isRunning;  
     }
 }
