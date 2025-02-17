@@ -21,7 +21,7 @@ A **lightweight and easy-to-use** metronome app built with **WPF and .NET 9.0+**
 
 ## 📌 **Development Roadmap & Trello Board**  
 🚀 Want to see what’s next for Simple Metronome? Check out our **Trello board**!  
-📌 **Trello Board:** [Simple Metronome Development](https://trello.com/[YOUR-TRELLO-LINK](https://trello.com/b/fZeGu0Xx/simple-metronome-development))  
+📌 **Trello Board:** [Simple Metronome Development]([Trello](https://trello.com/b/fZeGu0Xx/simple-metronome-development)  
 
 ✅ **Track new features, report bugs, and suggest ideas!**  
 
