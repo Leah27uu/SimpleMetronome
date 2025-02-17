@@ -19,6 +19,15 @@ A **lightweight and easy-to-use** metronome app built with **WPF and .NET 9.0+**
 
 ---
 
+## 📌 **Development Roadmap & Trello Board**  
+🚀 Want to see what’s next for Simple Metronome? Check out our **Trello board**!  
+📌 **Trello Board:** [Simple Metronome Development](https://trello.com/[YOUR-TRELLO-LINK](https://trello.com/b/fZeGu0Xx/simple-metronome-development))  
+
+✅ **Track new features, report bugs, and suggest ideas!**  
+
+---
+
+
 ## 🎛 **How to Use**
 1. **Adjust the BPM** using the slider or buttons.  
 2. **Choose a time signature** (e.g., 4/4, 3/4).  
@@ -28,19 +37,21 @@ A **lightweight and easy-to-use** metronome app built with **WPF and .NET 9.0+**
 
 ---
 
+## 🛠 **Contributing & Bug Reports**  
+🚀 **Want to contribute?**  
+1. **Fork the repo** and clone it locally.  
+2. Create a feature branch (`feature/new-feature`).  
+3. **Commit & push** your changes.  
+4. **Submit a Pull Request (PR)**.  
+
+🐞 **Found a bug?** Open an issue here: [GitHub Issues](https://github.com/Leah27uu/SimpleMetronome/issues).  
+
+---
+
 ## 🛠 **Technical Details**
 - **Built with:** `WPF`, `.NET 9.0+`, `NAudio`
 - **Supports:** Windows 10 / 11
 - **License:** MIT  
-
----
-
-## 📥 **Contributing**
-🚀 **Want to improve Simple Metronome?**  
-1. **Fork the repo**  
-2. **Create a feature branch** (`feature/new-feature`)  
-3. **Commit & push** your changes  
-4. **Submit a Pull Request**  
 
 ---
 
