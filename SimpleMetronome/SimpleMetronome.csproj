@@ -13,6 +13,8 @@
   <ItemGroup>
     <None Remove="Assets\Beep%28Accent%29.wav" />
     <None Remove="Assets\Beep.wav" />
+    <None Remove="Assets\Drumstick%28Accent%29.wav" />
+    <None Remove="Assets\Drumstick.wav" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +22,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Click.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Drumstick(Accent).wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Drumstick.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

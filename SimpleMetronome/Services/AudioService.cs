@@ -51,6 +51,11 @@ namespace SimpleMetronome.Services
                 selectedAccentSound = "Click(Accent).wav";
 
             }
+            else if (newSound == "Drumstick")
+            {
+                selectedSound = "Drumstick.wav";
+                selectedAccentSound = "Drumstick(Accent).wav";
+            }
 
             string normalPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", selectedSound);
             string accentPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", selectedAccentSound);
