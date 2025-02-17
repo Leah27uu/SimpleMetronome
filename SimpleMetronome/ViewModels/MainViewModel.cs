@@ -117,7 +117,7 @@ namespace SimpleMetronome.ViewModels
             Version = GetVersion();
             _timerService = new TimerService();
             _audioService = new AudioService();
-            _timerService.Tick += (isAccent) => _audioService.PlayTick(isAccent); // Play correct sound
+            _timerService.Tick += (isAccent) => _audioService.PlayTick(isAccent, SelectedSound); // Play correct sound
 
             TimeSignatures = new ObservableCollection<string> { "2/4", "3/4", "4/4", "6/8" };
             SoundOptions = new ObservableCollection<string> { "Click", "Beep", "Drumstick" };
@@ -150,11 +150,12 @@ namespace SimpleMetronome.ViewModels
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            _audioService.ChangeSound(SelectedSound);
         }
 
         private void OnTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            _timerService.Tick += (isAccent) => _audioService.PlayTick(isAccent);
+            _timerService.Tick += (isAccent) => _audioService.PlayTick(isAccent, SelectedSound);
         }
     }
 }
