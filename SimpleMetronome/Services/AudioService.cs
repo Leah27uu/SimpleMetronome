@@ -15,12 +15,14 @@ namespace SimpleMetronome.Services
         private WaveOutEvent _outputDevice;
         private AudioFileReader _normalBeat;
         private AudioFileReader _accentBeat;
+        private string selectedSound = "Beep.wav";
+        private string selectedAccentSound = "Beep(Accent).wav";
         private float _volume = 1.0f; // Default full volume
 
         public AudioService()
         {
-            string normalPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "tick.wav");
-            string accentPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "tick(Accent).wav");
+            string normalPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", selectedSound);
+            string accentPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", selectedAccentSound);
 
            if (File.Exists(normalPath) && File.Exists(accentPath))
             {
@@ -35,7 +37,38 @@ namespace SimpleMetronome.Services
 
         }
 
-        public void PlayTick(bool isAccent)
+        public void ChangeSound(string newSound)
+        {
+            if (newSound == "Beep")
+            {
+                selectedSound = "Beep.wav";
+                selectedAccentSound = "Beep(Accent).wav";
+
+            }
+            else if (newSound == "Click")
+            {
+                selectedSound = "Click.wav";
+                selectedAccentSound = "Click(Accent).wav";
+
+            }
+
+            string normalPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", selectedSound);
+            string accentPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", selectedAccentSound);
+
+            if (File.Exists(normalPath) && File.Exists(accentPath))
+            {
+                _normalBeat?.Dispose();
+                _accentBeat?.Dispose();
+
+                _normalBeat = new AudioFileReader(normalPath) { Volume = _volume };
+                _accentBeat = new AudioFileReader(accentPath) { Volume = _volume };
+
+                Console.WriteLine($" Sound changed to: {newSound} (Normal: {selectedSound}, Accent: {selectedAccentSound})");
+            }
+        }
+
+
+        public void PlayTick(bool isAccent, string SelectedSound)
         {
             _outputDevice?.Stop();
             _outputDevice?.Dispose();

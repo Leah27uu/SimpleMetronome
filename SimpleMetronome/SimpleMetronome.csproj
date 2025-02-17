@@ -11,15 +11,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\Tick%28Accent%29.wav" />
-    <None Remove="Assets\Tick.wav" />
+    <None Remove="Assets\Beep%28Accent%29.wav" />
+    <None Remove="Assets\Beep.wav" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Assets\Tick(Accent).wav">
+    <Content Include="Assets\Click%28Accent%29.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Tick.wav">
+    <Content Include="Assets\Click.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -44,6 +44,15 @@
 			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 			<Link>libs\%(Filename)%(Extension)</Link>
 		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Assets\Beep(Accent).wav">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Assets\Beep.wav">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 	<Target Name="MoveDLLsToLibs" AfterTargets="Build">
