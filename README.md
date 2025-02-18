@@ -9,6 +9,8 @@ A **lightweight and easy-to-use** metronome app built with **WPF and .NET 9.0+**
 ✅ **Time signatures**: 2/4, 3/4, 4/4, 6/8  
 ✅ **Volume control** (powered by NAudio)  
 ✅ **Lightweight & Fast**  
+✅ **Tap Tempo**  
+✅ **Three different sounds**  
 
 ---
 
@@ -57,8 +59,6 @@ A **lightweight and easy-to-use** metronome app built with **WPF and .NET 9.0+**
 
 ## 📝 **Planned Features**
 🔹 Dark Mode UI  
-🔹 Custom metronome sounds  
-🔹 Tap tempo feature  
 
 ---
 
