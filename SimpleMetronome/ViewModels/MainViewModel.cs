@@ -11,6 +11,7 @@ using SimpleMetronome.Helpers; // Imports RelayCommand
 using SimpleMetronome.Services; // Imports RelayCommand
 using System.Timers;
 using System.Reflection;
+using System.Diagnostics;
 
 namespace SimpleMetronome.ViewModels
 {
@@ -25,7 +26,10 @@ namespace SimpleMetronome.ViewModels
         private bool _accentFirstBeat = false; // Default: No accent
         private double _volume = 1.0; // Default volume at 100%
         private string _version;
-        
+
+        private List<DateTime> _tapTimes = new();
+        private const int MaxTapCount = 5; // Number of taps to average
+
 
         private readonly AudioService _audioService;
         private readonly TimerService _timerService;
@@ -111,6 +115,7 @@ namespace SimpleMetronome.ViewModels
         public ICommand IncreaseBPMCommand { get; }
         public ICommand DecreaseBPMCommand { get; }
         public ICommand ToggleMetronomeCommand { get; }
+        public ICommand TapTempoCommand { get; }
 
         public MainViewModel()
         {
@@ -125,10 +130,38 @@ namespace SimpleMetronome.ViewModels
             IncreaseBPMCommand = new RelayCommand(_ => IncreaseBPM());
             DecreaseBPMCommand = new RelayCommand(_ => DecreaseBPM());
             ToggleMetronomeCommand = new RelayCommand(_ => ToggleMetronome());
+            TapTempoCommand = new RelayCommand(_ => TapTempo());
         }
 
         private void IncreaseBPM() => BPM = Math.Min(BPM + 1, 240);
         private void DecreaseBPM() => BPM = Math.Max(BPM - 1, 40);
+
+        private void TapTempo()
+        {
+            DateTime now = DateTime.Now;
+
+            if (_tapTimes.Count >= MaxTapCount)
+                _tapTimes.RemoveAt(0);
+
+            _tapTimes.Add(now);
+
+            if (_tapTimes.Count > 1)
+            {
+                double avgInterval = _tapTimes.Zip(_tapTimes.Skip(1), (prev, next) => (next - prev).TotalSeconds).Average();
+
+                int newBPM = (int)Math.Round(60.0 / avgInterval);
+
+                // Ensure BPM is within the valid range (40 - 240 BPM)
+                newBPM = Math.Clamp(newBPM, 40, 240);
+
+                // 🔹 Adjust BPM using existing logic instead of setting it directly
+                while (BPM < newBPM) IncreaseBPM();
+                while (BPM > newBPM) DecreaseBPM();
+
+                Debug.WriteLine($"🎵 Tap Tempo BPM Set To: {BPM}");
+            }
+        }
+
 
         private void ToggleMetronome()
         {

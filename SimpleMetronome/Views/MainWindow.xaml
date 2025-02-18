@@ -14,6 +14,7 @@
             <RowDefinition Height="Auto"/> <!-- Time Signature & Sound -->
             <RowDefinition Height="Auto"/> <!-- Volume & Accent -->
             <RowDefinition Height="Auto"/> <!-- Start/Stop Button -->
+            <RowDefinition Height="Auto"/> <!-- Tempo Button -->
         </Grid.RowDefinitions>
         
         <!-- BPM Display -->
@@ -43,5 +44,15 @@
         <!-- Start/Stop Button -->
         <Button Grid.Row="4" Content="{Binding StartStopText}" Command="{Binding ToggleMetronomeCommand}" 
                 Width="150" Height="50" FontSize="18" Background="DarkRed" Foreground="White" HorizontalAlignment="Center"/>
+        
+        <!-- Tempo Button -->
+        <Button Content="Tap Tempo"
+                Command="{Binding TapTempoCommand}"
+                Width="120"
+                Height="40"
+                Grid.Row="5"
+                FontSize="16"
+                HorizontalAlignment="Center"
+                Margin="10"/>
     </Grid>
 </Window>
